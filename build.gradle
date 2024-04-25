@@ -5,15 +5,12 @@ plugins {
 }
 archivesBaseName = 'spring-aws'
 group = 'doitwell.group'
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
     jcenter()
-}
-manifest {
-    attributes 'Main-Class': 'doitwell.group.springaws.SpringAwsApplication'
 }
 
 dependencies {
@@ -29,4 +26,11 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+jar{
+    manifest {
+        attributes 'Main-Class': 'doitwell.group.springaws.SpringAwsApplication'
+    }
+
 }
