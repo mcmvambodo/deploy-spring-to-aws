@@ -6,7 +6,7 @@
 FROM openjdk:17
 EXPOSE 8080
 ADD build/libs/spring-aws-0.0.1-SNAPSHOT.jar spring-aws-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","spring-aws-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","spring-aws-plain.jar"]
 
 # FROM eclipse-temurin:17-jdk-alpine
 # VOLUME /tmp
