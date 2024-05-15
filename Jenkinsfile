@@ -1,7 +1,12 @@
 pipeline{
+    environment{
+        registry = '1190514/javajenkinsaws'
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
     agent any
     tools{
-        gradle 'gradle_8_7'
+        gradle 'gradle_8_8'
     }
     stages{
         stage('Build'){
@@ -15,13 +20,22 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    def dockerHome = tool 'docker-aws'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh '''
-                    docker build -t mcmvambodo/spring-aws-plain .
+                    docker build -t 1190514/spring-aws-plain .
                     '''
                 }
             }
         }
+        stage('Push image to Docker Hub'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhub-pwd')]) {
+                        sh 'docker login -u 1190514 -p ${dockerhub-pwd}'
+                        sh 'docker push 1190514/spring-aws-plain'
+                     }
+                }
+            }
+        }
+
     }
 }
