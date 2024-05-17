@@ -27,8 +27,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          name: spring-aws-plain
+          path: '${{ github.workspace }}/build/libs/*.jar'
 
   deploy:
     runs-on: windows-latest
@@ -41,9 +41,9 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact
+        uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: spring-aws-plain
       
       - name: Login to Azure
         uses: azure/login@v1
